@@ -1,0 +1,962 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Yeşim ♡</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(255,210,230,.45), transparent 30%),
+                linear-gradient(135deg, #fff5f8, #f8f4ff, #eefaff);
+            color: #493b48;
+        }
+
+        /* --------------------
+           YILDIZLAR
+        -------------------- */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255,255,255,.9);
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: .2;
+                transform: scale(.7);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* --------------------
+           ANA SAYFA
+        -------------------- */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .small-title {
+            font-size: 14px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #a58fa1;
+            margin-bottom: 20px;
+            animation: fadeDown 1.5s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(50px, 9vw, 100px);
+            font-weight: 600;
+            color: #554653;
+            line-height: .9;
+            margin-bottom: 20px;
+            animation: fadeDown 1.5s ease .2s both;
+        }
+
+        .hero h1 span {
+            color: #d884a8;
+        }
+
+        .subtitle {
+            max-width: 650px;
+            font-family: 'Caveat', cursive;
+            font-size: clamp(24px, 4vw, 38px);
+            line-height: 1.25;
+            color: #6f5b6c;
+            animation: fadeDown 1.5s ease .4s both;
+        }
+
+        /* --------------------
+           DÜNYA
+        -------------------- */
+
+        .world-wrapper {
+            position: relative;
+            width: 330px;
+            height: 330px;
+            margin: 45px auto 35px;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .world-glow {
+            position: absolute;
+            inset: -35px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(255,255,255,.9),
+                rgba(255,210,230,.2),
+                transparent 70%
+            );
+            filter: blur(15px);
+        }
+
+        .world {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle at 30% 25%, #ffffff 0 5%, transparent 6%),
+                linear-gradient(145deg, #9ee8c4, #6ecbb0 50%, #78b9e8);
+
+            box-shadow:
+                inset -25px -20px 45px rgba(50,100,130,.25),
+                inset 20px 15px 30px rgba(255,255,255,.6),
+                0 25px 60px rgba(80,80,120,.2);
+
+            overflow: hidden;
+        }
+
+        /* dünya üzerindeki kara parçaları */
+
+        .land {
+            position: absolute;
+            background: #9bd89c;
+            border-radius: 55% 45% 60% 40%;
+            opacity: .9;
+        }
+
+        .land.one {
+            width: 100px;
+            height: 65px;
+            top: 55px;
+            left: 45px;
+            transform: rotate(-20deg);
+        }
+
+        .land.two {
+            width: 75px;
+            height: 110px;
+            top: 115px;
+            left: 125px;
+            transform: rotate(25deg);
+        }
+
+        .land.three {
+            width: 80px;
+            height: 55px;
+            bottom: 45px;
+            right: 40px;
+            transform: rotate(-15deg);
+        }
+
+        /* dünya yüzü */
+
+        .face {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+        }
+
+        .eye {
+            position: absolute;
+            width: 14px;
+            height: 19px;
+            background: #453d48;
+            border-radius: 50%;
+            top: 138px;
+        }
+
+        .eye.left {
+            left: 105px;
+        }
+
+        .eye.right {
+            right: 105px;
+        }
+
+        .eye::after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+        }
+
+        .smile {
+            position: absolute;
+            width: 55px;
+            height: 28px;
+            border-bottom: 4px solid #453d48;
+            border-radius: 0 0 50px 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 153px;
+        }
+
+        .blush {
+            position: absolute;
+            width: 35px;
+            height: 17px;
+            background: rgba(255,130,160,.35);
+            border-radius: 50%;
+            top: 160px;
+        }
+
+        .blush.left {
+            left: 65px;
+        }
+
+        .blush.right {
+            right: 65px;
+        }
+
+        /* --------------------
+           ÇİÇEK / KALP
+        -------------------- */
+
+        .heart {
+            position: absolute;
+            color: #e48aaa;
+            font-size: 30px;
+            animation: heartFloat 4s ease-in-out infinite;
+        }
+
+        .heart.h1 {
+            top: 10px;
+            right: 0;
+        }
+
+        .heart.h2 {
+            bottom: 30px;
+            left: -10px;
+            font-size: 23px;
+            animation-delay: 1s;
+        }
+
+        .heart.h3 {
+            top: 90px;
+            left: -35px;
+            font-size: 17px;
+            animation-delay: 2s;
+        }
+
+        @keyframes heartFloat {
+            0%,100% {
+                transform: translateY(0) rotate(-10deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(10deg);
+            }
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        /* --------------------
+           BUTON
+        -------------------- */
+
+        .love-button {
+            border: none;
+            padding: 15px 28px;
+            border-radius: 100px;
+
+            background: rgba(255,255,255,.65);
+            backdrop-filter: blur(10px);
+
+            color: #72596c;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+
+            box-shadow:
+                0 10px 30px rgba(130,90,120,.12),
+                inset 0 0 0 1px rgba(255,255,255,.8);
+
+            cursor: pointer;
+            transition: .3s;
+
+            animation: fadeDown 1.5s ease .7s both;
+        }
+
+        .love-button:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(130,90,120,.2);
+        }
+
+        /* --------------------
+           İKİNCİ BÖLÜM
+        -------------------- */
+
+        .memory {
+            min-height: 100vh;
+            padding: 100px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .memory-card {
+            width: min(900px, 95%);
+            padding: 60px 40px;
+
+            background: rgba(255,255,255,.55);
+            backdrop-filter: blur(20px);
+
+            border-radius: 40px;
+
+            box-shadow:
+                0 30px 80px rgba(80,60,100,.1),
+                inset 0 0 0 1px rgba(255,255,255,.7);
+
+            text-align: center;
+        }
+
+        .memory-card h2 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(42px, 7vw, 65px);
+            color: #5b4959;
+            margin-bottom: 20px;
+        }
+
+        .memory-card p {
+            font-family: 'Caveat', cursive;
+            font-size: 27px;
+            line-height: 1.5;
+            color: #786675;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* --------------------
+           YEŞİM ÇİZİMİ
+        -------------------- */
+
+        .yesim {
+            position: relative;
+            width: 220px;
+            height: 270px;
+            margin: 55px auto 25px;
+        }
+
+        .hair {
+            position: absolute;
+            width: 145px;
+            height: 170px;
+            background: #e9c979;
+            border-radius: 50% 50% 45% 45%;
+            left: 38px;
+            top: 20px;
+            z-index: 1;
+            box-shadow: inset -10px -5px 0 rgba(180,140,50,.12);
+        }
+
+        .hair::before,
+        .hair::after {
+            content: "";
+            position: absolute;
+            background: #e9c979;
+            width: 45px;
+            height: 115px;
+            top: 45px;
+            border-radius: 50%;
+        }
+
+        .hair::before {
+            left: -20px;
+            transform: rotate(8deg);
+        }
+
+        .hair::after {
+            right: -20px;
+            transform: rotate(-8deg);
+        }
+
+        .head {
+            position: absolute;
+            width: 120px;
+            height: 140px;
+            background: #ffe0c2;
+            border-radius: 48% 48% 45% 45%;
+            left: 50px;
+            top: 45px;
+            z-index: 2;
+        }
+
+        .bang {
+            position: absolute;
+            width: 100px;
+            height: 45px;
+            background: #e9c979;
+            border-radius: 50%;
+            left: 10px;
+            top: -5px;
+        }
+
+        .green-eye {
+            position: absolute;
+            width: 13px;
+            height: 17px;
+            background: #659a62;
+            border-radius: 50%;
+            top: 58px;
+        }
+
+        .green-eye.left {
+            left: 28px;
+        }
+
+        .green-eye.right {
+            right: 28px;
+        }
+
+        .green-eye::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #293c29;
+            border-radius: 50%;
+            left: 4px;
+            top: 5px;
+        }
+
+        .nose {
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            border-right: 2px solid #d39f82;
+            border-bottom: 2px solid #d39f82;
+            top: 80px;
+            left: 56px;
+            transform: rotate(15deg);
+        }
+
+        .mouth {
+            position: absolute;
+            width: 28px;
+            height: 12px;
+            border-bottom: 2px solid #c97885;
+            border-radius: 0 0 30px 30px;
+            left: 46px;
+            top: 105px;
+        }
+
+        .body {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: #c5b4df;
+            border-radius: 60px 60px 20px 20px;
+            left: 50px;
+            top: 170px;
+            z-index: 1;
+        }
+
+        .yesim-name {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: #d27c9d;
+        }
+
+        /* --------------------
+           HARFLER
+        -------------------- */
+
+        .letters {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .letter {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.7);
+            box-shadow: 0 8px 25px rgba(100,70,100,.1);
+
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: #bd7897;
+
+            transition: .3s;
+        }
+
+        .letter:hover {
+            transform: translateY(-8px) rotate(8deg);
+        }
+
+        /* --------------------
+           SON
+        -------------------- */
+
+        .ending {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ending h2 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(45px, 8vw, 80px);
+            color: #d07d9e;
+        }
+
+        .ending p {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: #756172;
+            margin-top: 15px;
+        }
+
+        .forever {
+            margin-top: 25px;
+            font-size: 18px;
+            letter-spacing: 5px;
+            color: #a78b9e;
+        }
+
+        /* --------------------
+           ANİMASYONLAR
+        -------------------- */
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            font-family: 'Caveat', cursive;
+            font-size: 30px;
+            color: #d07d9e;
+            animation: fadeDown .7s ease;
+        }
+
+        /* --------------------
+           MOBİL
+        -------------------- */
+
+        @media (max-width: 600px) {
+
+            .world-wrapper {
+                width: 270px;
+                height: 270px;
+            }
+
+            .eye {
+                top: 115px;
+            }
+
+            .eye.left {
+                left: 85px;
+            }
+
+            .eye.right {
+                right: 85px;
+            }
+
+            .smile {
+                top: 130px;
+            }
+
+            .blush {
+                top: 137px;
+            }
+
+            .blush.left {
+                left: 50px;
+            }
+
+            .blush.right {
+                right: 50px;
+            }
+
+            .memory-card {
+                padding: 45px 25px;
+            }
+
+            .letters {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- YILDIZLAR -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ANA BÖLÜM -->
+    <section class="hero">
+
+        <div class="small-title">
+            sana küçük bir şey hazırladım
+        </div>
+
+        <h1>
+            Merhaba <span>Yeşim</span> ♡
+        </h1>
+
+        <p class="subtitle">
+            Küçük dünyama girdiğin için<br>
+            teşekkür ederim.
+        </p>
+
+        <!-- DÜNYA -->
+        <div class="world-wrapper">
+
+            <div class="world-glow"></div>
+
+            <div class="world">
+
+                <div class="land one"></div>
+                <div class="land two"></div>
+                <div class="land three"></div>
+
+                <div class="face">
+
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+
+                    <div class="blush left"></div>
+                    <div class="blush right"></div>
+
+                    <div class="smile"></div>
+
+                </div>
+
+            </div>
+
+            <div class="heart h1">♡</div>
+            <div class="heart h2">♥</div>
+            <div class="heart h3">♡</div>
+
+        </div>
+
+        <button class="love-button" onclick="showMessage()">
+            dünyaya dokun ✨
+        </button>
+
+        <div id="secret" class="hidden-message">
+            İyi ki geldin Yeşim. ♡
+        </div>
+
+    </section>
+
+
+    <!-- HATIRA -->
+    <section class="memory">
+
+        <div class="memory-card">
+
+            <h2>
+                Her şey küçük bir dünyayla başladı...
+            </h2>
+
+            <p>
+                Bana verdiğin ilk hediyeyi hâlâ hatırlıyorum.
+                Üzerinde o tatlı suratın olduğu küçük dünya
+                ve o güzel cümle...
+                <br><br>
+                “Küçük dünyama girdiğin için teşekkür ederim.”
+                <br><br>
+                Belki o zaman farkında değildin ama
+                aslında sen de benim dünyama girmiştin.
+            </p>
+
+
+            <!-- YEŞİM'İN ÇİZİMİ -->
+            <div class="yesim">
+
+                <div class="hair"></div>
+
+                <div class="head">
+
+                    <div class="bang"></div>
+
+                    <div class="green-eye left"></div>
+                    <div class="green-eye right"></div>
+
+                    <div class="nose"></div>
+                    <div class="mouth"></div>
+
+                </div>
+
+                <div class="body"></div>
+
+            </div>
+
+            <div class="yesim-name">
+                Yeşim ♡
+            </div>
+
+
+            <!-- Y Z C -->
+            <div class="letters">
+
+                <div class="letter">Z</div>
+                <div class="letter">Y</div>
+                <div class="letter">C</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SON -->
+    <section class="ending">
+
+        <div>
+
+            <h2>
+                Sen benim en güzel tesadüfümsün.
+            </h2>
+
+            <p>
+                Ve artık bu küçük dünya ikimizin. 🌎♡
+            </p>
+
+            <div class="forever">
+                Z · Y · C
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        /* --------------------
+           YILDIZLAR OLUŞTUR
+        -------------------- */
+
+        const starsContainer = document.getElementById("stars");
+
+        for (let i = 0; i < 80; i++) {
+
+            const star = document.createElement("div");
+
+            star.classList.add("star");
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+
+            star.style.animationDelay =
+                Math.random() * 3 + "s";
+
+            star.style.animationDuration =
+                2 + Math.random() * 3 + "s";
+
+            starsContainer.appendChild(star);
+        }
+
+
+        /* --------------------
+           GİZLİ MESAJ
+        -------------------- */
+
+        function showMessage() {
+
+            const secret =
+                document.getElementById("secret");
+
+            secret.style.display = "block";
+
+            createHearts();
+
+        }
+
+
+        /* --------------------
+           TIKLAYINCA KALPLER
+        -------------------- */
+
+        function createHearts() {
+
+            for (let i = 0; i < 15; i++) {
+
+                const heart =
+                    document.createElement("div");
+
+                heart.innerHTML = "♥";
+
+                heart.style.position = "fixed";
+                heart.style.left =
+                    (45 + Math.random() * 10) + "%";
+
+                heart.style.top =
+                    (45 + Math.random() * 10) + "%";
+
+                heart.style.fontSize =
+                    (15 + Math.random() * 20) + "px";
+
+                heart.style.color = "#df89a9";
+
+                heart.style.pointerEvents = "none";
+
+                heart.style.zIndex = "100";
+
+                document.body.appendChild(heart);
+
+                heart.animate(
+                    [
+                        {
+                            transform: "translate(0,0) scale(1)",
+                            opacity: 1
+                        },
+                        {
+                            transform:
+                                `translate(${(Math.random()-0.5)*300}px,
+                                ${-150-Math.random()*250}px)
+                                scale(0.4)`,
+                            opacity: 0
+                        }
+                    ],
+                    {
+                        duration: 1500 + Math.random()*1000,
+                        easing: "ease-out"
+                    }
+                );
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 2500);
+            }
+        }
+
+
+        /* --------------------
+           MOUSE PARILTISI
+        -------------------- */
+
+        document.addEventListener("mousemove", function(e) {
+
+            if (Math.random() > 0.85) {
+
+                const sparkle =
+                    document.createElement("div");
+
+                sparkle.innerHTML = "✦";
+
+                sparkle.style.position = "fixed";
+                sparkle.style.left = e.clientX + "px";
+                sparkle.style.top = e.clientY + "px";
+
+                sparkle.style.pointerEvents = "none";
+                sparkle.style.color = "#d99ab4";
+                sparkle.style.fontSize = "10px";
+                sparkle.style.zIndex = "100";
+
+                document.body.appendChild(sparkle);
+
+                sparkle.animate(
+                    [
+                        {
+                            opacity: 0,
+                            transform: "scale(0)"
+                        },
+                        {
+                            opacity: 1,
+                            transform: "scale(1)"
+                        },
+                        {
+                            opacity: 0,
+                            transform: "scale(0)"
+                        }
+                    ],
+                    {
+                        duration: 700
+                    }
+                );
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 700);
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
